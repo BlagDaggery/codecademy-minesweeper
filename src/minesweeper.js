@@ -23,11 +23,43 @@ const generateBombBoard = (rowCount, columnCount, bombCount) => {
   while (numberOfBombsPlaced < bombCount) {
     let randomRowIndex = Math.floor(Math.random() * rowCount);
     let randomColumnIndex = Math.floor(Math.random() * columnCount);
-    board[randomRowIndex][randomColumnIndex] = 'B';
-    numberOfBombsPlaced++;
-    // The code in your while loop has the potential to place bombs on top of already existing bombs. This will be fixed when you learn about control flow.
+    if (board[randomRowIndex][randomColumnIndex] !== 'B') {
+      board[randomRowIndex][randomColumnIndex] = 'B';
+      numberOfBombsPlaced++;
+    }
   }
   return board;
+}
+
+const getNumberOfNeighborBombs = (bombBoard, rowIndex, columnIndex) => {
+  const neighborOffsets = [
+    [-1,-1],
+    [-1.0],
+    [-1,1],
+    [0,-1],
+    [0,1],
+    [1,-1],
+    [1,0],
+    [1,1]
+  ];
+  const numberofRows = bombBoard.length;
+  const numberofColumns = bombBoard[0].length;
+  let numberOfBombs = 0;
+
+  neighborOffsets.forEach(offset => {
+    const neighborRowIndex = rowIndex + offset[0];
+    const neighborColumnIndex = columnIndex + offset[1];
+
+    if (neighborRowIndex >= 0 &&
+      neighborRowIndex < numberofRows &&
+      neighborColumnIndex >= 0 &&
+      neighborColumnIndex < numberofColumns) {
+      if (bombBoard[neighborRowIndex][neighborColumnIndex] == 'B') {
+        numberOfBombs++;
+      }
+    }
+  });
+  return numberOfBombs
 }
 
 const printBoard = (board) => {
