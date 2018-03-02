@@ -1,5 +1,5 @@
 # codecademy-minesweeper
-This program is a activity for the Codecademy intensive course "Build Front-End Web Applications from Scratch" where we were tasked with building a Minesweeper game that could be played in the terminal.
+This program is an activity for the Codecademy intensive course "Build Front-End Web Applications from Scratch" where we were tasked with building a Minesweeper game that could be played in the terminal.
 
 ## How to Play
 To play Minesweeper, we will create instances of MineSweeperGame in command line.
